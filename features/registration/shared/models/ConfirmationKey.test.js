@@ -48,4 +48,16 @@ describe('ConfirmationKey', () => {
     test('generate should return a valid UUID4 string', () => {
         expect(ConfirmationKey.generate()).isUUID4()
     })
+
+    test('equals should return true if called with a second key with the same value', () => {
+        let key1 = new ConfirmationKey('af4fd497-30cc-479a-aa7d-3fb4320bc86d')
+        let key2 = new ConfirmationKey('af4fd497-30cc-479a-aa7d-3fb4320bc86d')
+        expect(key1.equals(key2)).toBe(true)
+    })
+
+    test('equals should return false if called with a second key with a different value', () => {
+        let key1 = new ConfirmationKey('af4fd497-30cc-479a-aa7d-3fb4320bc86d')
+        let key2 = new ConfirmationKey('6baf27c6-8c0e-41f4-83b0-803eaf60b3c7')
+        expect(key1.equals(key2)).toBe(false)
+    })
 })

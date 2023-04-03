@@ -20,6 +20,10 @@ class ConfirmationKey {
     static generate() {
         return crypto.randomUUID()
     }
+
+    equals(other) {
+        return this.value === other.value
+    }
 }
 
 module.exports = ConfirmationKey
