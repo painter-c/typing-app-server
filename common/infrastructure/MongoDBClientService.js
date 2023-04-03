@@ -31,7 +31,8 @@ class MongoDBClientService {
 
     async getConnection(dbName) {
         try {
-            await this.mongoClient.db(dbName)
+            let db = await this.mongoClient.db(dbName)
+            return db
         }
         catch (error) {
             throw Errors.Database.MongoClientUnknownDatabase
