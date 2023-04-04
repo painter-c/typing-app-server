@@ -2,9 +2,7 @@ const ConfirmationKey = require('./ConfirmationKey')
 const RegistrationErrors = require('../RegistrationErrors')
 
 class PendingConfirmation {
-
-    constructor(confirmationKey, userId) {
-        
+    constructor (confirmationKey, userId) {
         if (!(confirmationKey instanceof ConfirmationKey)) {
             throw RegistrationErrors.PendingConfirmation.InvalidConfirmationKey
         }

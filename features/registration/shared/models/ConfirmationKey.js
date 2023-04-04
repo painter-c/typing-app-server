@@ -3,9 +3,7 @@ const validator = require('validator')
 const RegistrationErrors = require('../RegistrationErrors')
 
 class ConfirmationKey {
-
-    constructor(confirmationKeyString) {
-
+    constructor (confirmationKeyString) {
         if (!ConfirmationKey.validate(confirmationKeyString)) {
             throw RegistrationErrors.ConfirmationKey.InvalidConstructorArg
         }
@@ -13,15 +11,15 @@ class ConfirmationKey {
         this.value = confirmationKeyString
     }
 
-    static validate(confirmationKeyString) {
+    static validate (confirmationKeyString) {
         return validator.isUUID(confirmationKeyString, 4)
     }
 
-    static generate() {
+    static generate () {
         return crypto.randomUUID()
     }
 
-    equals(other) {
+    equals (other) {
         return this.value === other.value
     }
 }

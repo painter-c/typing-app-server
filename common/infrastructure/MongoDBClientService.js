@@ -2,13 +2,10 @@ const Errors = require('../errors/Errors')
 const MongoClient = require('mongodb').MongoClient
 
 class MongoDBClientService {
-
-    constructor(mongoClient) {
-
+    constructor (mongoClient) {
         if (mongoClient == null) {
             throw Errors.Database.MongoClientEmptyConstructor
         }
-        
         if (!(mongoClient instanceof MongoClient)) {
             throw Errors.Database.MongoClientInvalidClientObject
         }
@@ -16,25 +13,23 @@ class MongoDBClientService {
         this.mongoClient = mongoClient
     }
 
-    async init() {
+    async init () {
         try {
             await this.mongoClient.connect()
-        }
-        catch (error) {
+        } catch (error) {
             throw Errors.Database.MongoClientInitFailure
         }
     }
 
-    getClient() {
+    getClient () {
         return this.mongoClient
     }
 
-    async getConnection(dbName) {
+    async getConnection (dbName) {
         try {
-            let db = await this.mongoClient.db(dbName)
+            const db = await this.mongoClient.db(dbName)
             return db
-        }
-        catch (error) {
+        } catch (error) {
             throw Errors.Database.MongoClientUnknownDatabase
         }
     }
